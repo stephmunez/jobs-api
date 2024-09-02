@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const { StatusCodes } = require('http-status-codes');
-const jwt = require('jsonwebtoken');
+const { BadRequestError } = require('../errors');
 
 const register = async (req, res) => {
   const user = await User.create({ ...req.body });
@@ -9,7 +9,13 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  res.send('login user');
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    throw new BadRequestError('Please provide email and password');
+  }
+
+  res.send({ email, password });
 };
 
 module.exports = { register, login };
