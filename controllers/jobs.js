@@ -43,7 +43,6 @@ const updateJob = async (req, res) => {
 
 const deleteJob = async (req, res) => {
   const { user, params } = req;
-
   const job = await Job.findOneAndRemove({ _id: params.id, createdBy: user._id });
 
   if (!job) {
@@ -51,7 +50,6 @@ const deleteJob = async (req, res) => {
   }
 
   res.status(StatusCodes.OK).send();
- 
 };
 
 module.exports = { getAllJobs, getJob, createJob, updateJob, deleteJob };
