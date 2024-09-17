@@ -7,6 +7,10 @@ const cors = require('cors');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 
+app.get('/', (req, res) => {
+  res.send('Jobs API by stephmunez');
+});
+
 // connect DB
 const connectDB = require('./db/connect');
 
@@ -14,9 +18,6 @@ const connectDB = require('./db/connect');
 const authMiddleware = require('./middleware/authentication');
 
 // routers
-app.get('/', (req, res) => {
-  res.send('Jobs API by stephmunez');
-});
 const authRouter = require('./routes/auth');
 const jobsRouter = require('./routes/jobs');
 
